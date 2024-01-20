@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin: 10vh 0;
+        }
+
+        .container {
+            align-self: center;
+            display: flex;
+            height: 30vh;
+            width: 50%;
+            padding: 1rem;
+            background-color: #00052A;
+        }
+
+        .bar-container {
+            flex: 1;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .bar {
+            width: 100%;
+            height: 100%;
+        }
+
+        .bar1 {
+            background-color: #6D48B0;
+        }
+
+        .bar2 {
+            background-color: #DD4DAA;
+        }
+
+        .bar3 {
+            background-color: #FC5786;
+        }
+
+        .bar4 {
+            background-color: #FC9067;
+        }
+
+        .bar5 {
+            background-color: #EAC673;
+        }
+
+        .buttons {
+            margin-top: 5rem;
+            display: flex;
+            gap: 8rem;
+        }
+
+        .btn {
+            padding: 0.5rem 3rem;
+            cursor: pointer;
+            color: #fff;
+            border: none;
+        }
+
+        .b1 {
+            background-color: #008355;
+        }
+
+        .b2 {
+            background-color: #7450B2;
+        }
+
+        .b3 {
+            background-color: #EA120D;
+        }
+
+        @keyframes scaleAnimation {
+
+            0%,
+            100% {
+                height: 0;
+            }
+
+            50% {
+                height: 100%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="bar-container">
+            <div id="bar1" class="bar1 bar animate">.</div>
+        </div>
+        <div class="bar-container">
+            <div id="bar2" class="bar2 bar">.</div>
+        </div>
+        <div class="bar-container">
+            <div id="bar3" class="bar3 bar">.</div>
+        </div>
+        <div class="bar-container">
+            <div id="bar4" class="bar4 bar">.</div>
+        </div>
+        <div class="bar-container">
+            <div id="bar5" class="bar5 bar">.</div>
+        </div>
+    </div>
+    <div class="buttons">
+        <div class="btn b1" onclick="startAnimation()">Start</div>
+        <div class="btn b2" onclick="resetAnimation()">Reset</div>
+        <div class="btn b3" onclick="stopAnimation()">Stop</div>
+    </div>
+    <script>
+
+        function animate(bar, minDelay, maxDelay) {
+            const delay = Math.random() * (maxDelay - minDelay) + minDelay;
+            bar.style.animationName = "scaleAnimation";
+            bar.style.animationDuration = `${delay}s`;
+            bar.style.animationIterationCount = "infinite";
+            bar.style.animationTimingFunction = "ease-in-out";
+        }
+
+        function startAnimation() {
+            const bar1 = document.getElementById("bar1");
+            const bar2 = document.getElementById("bar2");
+            const bar3 = document.getElementById("bar3");
+            const bar4 = document.getElementById("bar4");
+            const bar5 = document.getElementById("bar5");
+            animate(bar1, 2, 5);
+            animate(bar2, 2, 5);
+            animate(bar3, 2, 5);
+            animate(bar4, 2, 5);
+            animate(bar5, 2, 5);
+        }
+
+        function reset(bar) {
+            bar.style.animationName = "";
+            bar.style.animationDuration = "";
+            bar.style.animationIterationCount = "";
+            bar.style.animationTimingFunction = "";
+            bar.style.animationPlayState = "running";
+            void bar.offsetWidth;
+        }
+
+        function resetAnimation(bar) {
+            reset(bar1);
+            reset(bar2);
+            reset(bar3);
+            reset(bar4);
+            reset(bar5);
+        }
+
+        function stopstate(bar) {
+            const currentPlayState = bar.style.animationPlayState;
+            bar.style.animationPlayState = currentPlayState === "paused" ? "running" : "paused";
+        }
+        function stopAnimation() {
+            stopstate(bar1);
+            stopstate(bar2);
+            stopstate(bar3);
+            stopstate(bar4);
+            stopstate(bar5);
+        }
+    </script>
+</body>
+
+</html>
